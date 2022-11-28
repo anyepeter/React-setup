@@ -1,33 +1,41 @@
-'use strict';
+const Pet = (props) => {
+  return React.createElement(
+     "div",
+     {},
+     [
+      React.createElement("h1", {}, props.name),
+      React.createElement("h2", {}, props.animal),
+      React.createElement("h2", {}, props.breed),
 
-const e = React.createElement;
+     ]
 
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
-  }
-
-  render() {
-    if (this.state.liked) {
-      return 'You liked comment number ' + this.props.commentID;
-    }
-
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
-  }
+  )
 }
 
-// Find all DOM containers, and render Like buttons into them.
-document.querySelectorAll('.like_button_container')
-  .forEach(domContainer => {
-    // Read the comment ID from a data-* attribute.
-    const commentID = parseInt(domContainer.dataset.commentid, 10);
-    const root = ReactDOM.createRoot(domContainer);
-    root.render(
-      e(LikeButton, { commentID: commentID })
-    );
-  });
+const app = () => {
+  return React.createElement(
+    "div",
+    {},
+    [
+      React.createElement("h1",  {}, "Adopt me!"),
+      React.createElement(Pet, {
+        name: "Luna",
+        animal: "Dog",
+        breed: "Havanese",
+      }),
+      React.createElement(Pet, {
+        name: "Pepper",
+        animal: "Bird",
+        breed: "Cocktail",
+      }),
+      React.createElement(Pet, {
+        name: "Doink",
+        animal: "Cat",
+        breed: "Mix",
+      }),
+    ]
+   
+  )
+}
+
+ReactDOM.render(React.createElement(app), document.getElementById("root"))
